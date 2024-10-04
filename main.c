@@ -7,7 +7,7 @@ typedef struct
     float temp_minima, temp_media, temp_maxima;
 } Estatisticas;
 
-Estatisticas calcula_estatisticas(float temperaturas[], int tamanho){
+void calcula_estatisticas(float temperaturas[], int tamanho){ // Terminar o código depois
 
     float soma = 0.0;
     float menor;
@@ -15,17 +15,20 @@ Estatisticas calcula_estatisticas(float temperaturas[], int tamanho){
 
     for (int i = tamanho; i != 0; i--)
     {
-        
+        if(temperaturas[i] < temperaturas[i + 1]){
+            menor = temperaturas[i];
+        }
         soma += temperaturas[i];
     }
     
+    printf("%.1f\n", menor);
 
 }
 
 int main(){
     FILE *arquivo = fopen("texto.txt", "r");
     char buffer[255];
-    float temperaturas[20];
+    float temperaturas[5];
     char numeroChar[4];
     float numero;
 
@@ -46,6 +49,8 @@ int main(){
     {
         printf("%.1f\n", temperaturas[i]);
     }
+
+    calcula_estatisticas(temperaturas ,sizeof(temperaturas)/sizeof(temperaturas[0]));
     
     fclose(arquivo);
 }
